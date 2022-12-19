@@ -1,0 +1,50 @@
+What is a correct syntax to output "Hello World" in Kotlin?
+cout << "Hello World"
+printf("Hello World")
+Console.log("Hello World")
+println("Hello World")
+4
+How do you insert COMMENTS in Kotlin code?
+//
+--
+#
+/*
+1
+Which keyword is used to declare a function?
+function
+fun
+declare
+define
+2
+How can you create a variable with the numeric value 5?
+num = 5
+int num = 5
+val num = 5
+num = 5 int
+3
+What is the output of the following code: println(5 > 3 && 5 < 10)
+5
+true
+2
+false
+2
+What is to in the example: val test = 33 to 42
+An infix extension function creating Pair(33, 42)
+A syntax error
+A Kotlin keyword to create a Range from 33 to 42
+A Kotlin keyword to create a Pair(33, 42)
+1
+Which of these targets does Kotlin currently not support?
+LLVM
+.NET CLR
+JavaScript
+JVM
+2
+Which of the followings represents a single user interface screen?
+Service
+BroadcastReceiver
+ContentProvider
+Activity
+4
+
+

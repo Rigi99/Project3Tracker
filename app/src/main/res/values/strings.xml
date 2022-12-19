@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Project3Tracker</string>
+    <string name="log_in">Log in</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="this_is_a_simple_item">This is a simple item!</string>
+    <string name="task_title">Task title</string>
+    <string name="task_description">Task description</string>
+    <string name="task_priority">Task priority</string>
+    <string name="owner_s_profile_picture">Owner\'s profile picture</string>
+</resources>
