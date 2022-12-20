@@ -16,6 +16,7 @@ import com.example.project3tracker.api.ThreeTrackerRepository
 import com.example.project3tracker.api.model.TaskResponse
 import com.example.project3tracker.viewmodel.TaskViewModel
 import com.example.project3tracker.viewmodel.TaskViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TaskListFragment : Fragment(R.layout.fragment_task_list),
     TasksListAdapter.OnItemClickListener,
@@ -71,5 +72,13 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list),
 
     override fun onItemLongClick(position: Int) {
 //        TODO("Not yet implemented")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val view2 = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
+
+        view2.visibility = View.VISIBLE
     }
 }

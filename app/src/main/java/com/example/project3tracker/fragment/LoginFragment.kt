@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,8 @@ import com.example.project3tracker.api.ThreeTrackerRepository
 import com.example.project3tracker.manager.SharedPreferencesManager
 import com.example.project3tracker.viewmodel.LoginViewModel
 import com.example.project3tracker.viewmodel.LoginViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class LoginFragment : Fragment() {
 
@@ -40,7 +43,7 @@ class LoginFragment : Fragment() {
 
         val userNameEditText: EditText = view.findViewById(R.id.edittext_name_login_fragment)
         val passwordEditText: EditText = view.findViewById(R.id.edittext_password_login_fragment)
-        val button: Button = view.findViewById(R.id.button_login_fragment)
+        val logInButton: Button = view.findViewById(R.id.log_in_button)
 
         Log.d(
             TAG,
@@ -50,7 +53,7 @@ class LoginFragment : Fragment() {
             )
         )
 
-        button.setOnClickListener {
+        logInButton.setOnClickListener {
             val username = userNameEditText.text.toString()
             val password = passwordEditText.text.toString()
 
@@ -60,10 +63,20 @@ class LoginFragment : Fragment() {
                 Log.d(TAG, "Logged in successfully = $it")
                 if (it) {
                     findNavController().navigate(R.id.taskListFragment)
+                } else {
+                    Toast.makeText(activity, "Wrong email or password!", Toast.LENGTH_LONG).show()
                 }
             }
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val view2 = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
+
+        view2.visibility = View.GONE
     }
 }

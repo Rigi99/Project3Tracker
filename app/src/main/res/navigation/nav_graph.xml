@@ -16,4 +16,12 @@
         android:id="@+id/taskListFragment"
         android:name="com.example.project3tracker.fragment.TaskListFragment"
         android:label="TaskListFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.project3tracker.fragment.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.example.project3tracker.fragment.NewTaskFragment"
+        android:label="NewTaskFragment" />
 </navigation>
