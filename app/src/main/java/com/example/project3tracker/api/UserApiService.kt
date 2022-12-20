@@ -1,8 +1,6 @@
 package com.example.project3tracker.api
 
-import com.example.project3tracker.api.model.LoginRequestBody
-import com.example.project3tracker.api.model.LoginResponse
-import com.example.project3tracker.api.model.TaskResponse
+import com.example.project3tracker.api.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,4 +14,11 @@ interface UserApiService {
 
     @GET(BackendConstants.GET_TASKS_URL)
     suspend fun getTasks(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<TaskResponse>>
+
+    @POST(BackendConstants.CREATE_TASK_URL)
+    suspend fun createTask(@Header(BackendConstants.HEADER_TOKEN) @Body createTaskRequest: CreateTaskRequestBody): Response<CreateTaskResponse>
+
+    @POST(BackendConstants.UPDATE_USER)
+    suspend fun updateUser(@Header(BackendConstants.HEADER_TOKEN) @Body updateUserRequest: UpdateProfileRequest): Response<UpdateProfileResponse>
+
 }

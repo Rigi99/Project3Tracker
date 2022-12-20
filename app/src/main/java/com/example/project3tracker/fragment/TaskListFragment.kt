@@ -77,8 +77,8 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val view2 = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
+        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
 
-        view2.visibility = View.VISIBLE
+        bottomNavigationView.visibility = View.VISIBLE
     }
 }

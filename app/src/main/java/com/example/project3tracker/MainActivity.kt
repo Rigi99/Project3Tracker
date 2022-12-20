@@ -2,12 +2,9 @@ package com.example.project3tracker
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.example.project3tracker.databinding.ActivityMainBinding
-import com.example.project3tracker.databinding.FragmentTaskListBinding
 
 class MainActivity : AppCompatActivity() {
 

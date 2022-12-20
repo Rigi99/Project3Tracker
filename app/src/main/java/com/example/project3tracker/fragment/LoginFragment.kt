@@ -18,7 +18,6 @@ import com.example.project3tracker.manager.SharedPreferencesManager
 import com.example.project3tracker.viewmodel.LoginViewModel
 import com.example.project3tracker.viewmodel.LoginViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class LoginFragment : Fragment() {
 
@@ -75,8 +74,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val view2 = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
-
-        view2.visibility = View.GONE
+        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
+        bottomNavigationView.visibility = View.GONE
     }
 }
