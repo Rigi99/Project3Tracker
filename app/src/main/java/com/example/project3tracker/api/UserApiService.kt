@@ -16,9 +16,18 @@ interface UserApiService {
     suspend fun getTasks(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<TaskResponse>>
 
     @POST(BackendConstants.CREATE_TASK_URL)
-    suspend fun createTask(@Header(BackendConstants.HEADER_TOKEN) @Body createTaskRequest: CreateTaskRequestBody): Response<CreateTaskResponse>
+    suspend fun createTask(
+        @Header(BackendConstants.HEADER_TOKEN) token: String,
+        @Body createTaskRequest: CreateTaskRequestBody
+    ): Response<CreateTaskResponse>
 
     @POST(BackendConstants.UPDATE_USER)
-    suspend fun updateUser(@Header(BackendConstants.HEADER_TOKEN) @Body updateUserRequest: UpdateProfileRequest): Response<UpdateProfileResponse>
+    suspend fun updateUser(
+        @Header(BackendConstants.HEADER_TOKEN) token: String,
+        @Body updateUserRequest: UpdateProfileRequest
+    ): Response<UpdateProfileResponse>
+
+    @GET(BackendConstants.GET_USER)
+    suspend fun getUserData(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<GetProfileResponse>
 
 }

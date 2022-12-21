@@ -4,8 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.project3tracker.App
+import com.example.project3tracker.api.BackendConstants
 import com.example.project3tracker.api.ThreeTrackerRepository
 import com.example.project3tracker.api.model.UpdateProfileRequest
+import com.example.project3tracker.manager.SharedPreferencesManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,8 +21,8 @@ class SettingsViewModel(private val repository: ThreeTrackerRepository) : ViewMo
     var isSuccessful: MutableLiveData<Boolean> = MutableLiveData()
 
     fun updateUser(
-        lastName: String,
         firstName: String,
+        lastName: String,
         location: String,
         phoneNumber: String,
         imageUrl: String
@@ -31,19 +34,25 @@ class SettingsViewModel(private val repository: ThreeTrackerRepository) : ViewMo
             phoneNumber,
             imageUrl
         )
+        val token = App.sharedPreferences.getStringValue(
+            SharedPreferencesManager.KEY_TOKEN,
+            "Empty token!"
+        )
         viewModelScope.launch {
-            executeCreateTask(requestBody)
+            if (token != null) {
+                executeUpdateUser(token, requestBody)
+            }
         }
     }
 
-    private suspend fun executeCreateTask(requestBody: UpdateProfileRequest) {
+    private suspend fun executeUpdateUser(token: String, requestBody: UpdateProfileRequest) {
         try {
             val response = withContext(Dispatchers.IO) {
-                repository.updateUser(requestBody)
+                repository.updateUser(token, requestBody)
             }
 
             if (response.isSuccessful) {
-                Log.d(TAG, "Creating task response: ${response.body()}")
+                Log.d(TAG, "Update user response: ${response.body()}")
 
                 val responseToken = response.body()?.message
                 responseToken?.let {
@@ -54,7 +63,7 @@ class SettingsViewModel(private val repository: ThreeTrackerRepository) : ViewMo
                 isSuccessful.value = false
             }
         } catch (e: Exception) {
-            Log.d(TAG, "NewTaskViewModel - createTask() failed with exception: ${e.message}")
+            Log.d(TAG, "SettingsViewModel - updateUser() failed with exception: ${e.message}")
             isSuccessful.value = false
         }
     }

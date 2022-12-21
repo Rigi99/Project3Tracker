@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project3tracker.App
+import com.example.project3tracker.api.BackendConstants
 import com.example.project3tracker.api.ThreeTrackerRepository
 import com.example.project3tracker.api.model.CreateTaskRequestBody
 import com.example.project3tracker.api.model.LoginRequestBody
@@ -37,15 +38,16 @@ class NewTaskViewModel(private val repository: ThreeTrackerRepository) : ViewMod
             departmentId,
             status
         )
+        val token = BackendConstants.HEADER_TOKEN
         viewModelScope.launch {
-            executeCreateTask(requestBody)
+            executeCreateTask(token, requestBody)
         }
     }
 
-    private suspend fun executeCreateTask(requestBody: CreateTaskRequestBody) {
+    private suspend fun executeCreateTask(token: String, requestBody: CreateTaskRequestBody) {
         try {
             val response = withContext(Dispatchers.IO) {
-                repository.createTask(requestBody)
+                repository.createTask(token, requestBody)
             }
 
             if (response.isSuccessful) {

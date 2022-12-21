@@ -7,4 +7,5 @@ object BackendConstants {
     const val HEADER_TOKEN = "token"
     const val CREATE_TASK_URL = "task/create"
     const val UPDATE_USER = "users/updateProfile"
+    const val GET_USER = "user"
 }

@@ -14,5 +14,12 @@
     <string name="home">Home</string>
     <string name="tasks">Tasks</string>
     <string name="add_task">Add Task</string>
-    <string name="profile">Profile</string>
+    <string name="profile">Profile settings</string>
+    <string name="phone">Phone</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="location">Location</string>
+    <string name="image_url">Image URL</string>
+    <string name="submit">Submit</string>
+    <string name="update">Update</string>
 </resources>

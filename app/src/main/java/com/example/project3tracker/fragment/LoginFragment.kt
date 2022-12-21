@@ -57,14 +57,14 @@ class LoginFragment : Fragment() {
             val password = passwordEditText.text.toString()
 
             loginViewModel.login(username, password)
+        }
 
-            loginViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
-                Log.d(TAG, "Logged in successfully = $it")
-                if (it) {
-                    findNavController().navigate(R.id.taskListFragment)
-                } else {
-                    Toast.makeText(activity, "Wrong email or password!", Toast.LENGTH_LONG).show()
-                }
+        loginViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
+            Log.d(TAG, "Logged in successfully = $it")
+            if (it) {
+                findNavController().navigate(R.id.taskListFragment)
+            } else {
+                Toast.makeText(activity, "Wrong email or password!", Toast.LENGTH_LONG).show()
             }
         }
 
