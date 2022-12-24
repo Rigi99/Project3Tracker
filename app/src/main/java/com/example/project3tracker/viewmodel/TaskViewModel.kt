@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project3tracker.App
 import com.example.project3tracker.api.ThreeTrackerRepository
+import com.example.project3tracker.api.model.Task
 import com.example.project3tracker.api.model.TaskResponse
 import com.example.project3tracker.manager.SharedPreferencesManager
 import kotlinx.coroutines.launch
@@ -13,10 +14,12 @@ import kotlinx.coroutines.launch
 class TaskViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
 
     companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
         private val TAG: String = javaClass.simpleName
     }
 
-    var products: MutableLiveData<List<TaskResponse>> = MutableLiveData()
+    var tasks: MutableLiveData<List<TaskResponse>> = MutableLiveData()
+    lateinit var selectedTask: Task
 
     init {
         getTasks()
@@ -38,7 +41,7 @@ class TaskViewModel(private val repository: ThreeTrackerRepository) : ViewModel(
 
                     val tasksList = response.body()
                     tasksList?.let {
-                        products.value = tasksList
+                        tasks.value = tasksList
                     }
                 } else {
                     Log.d(TAG, "Get tasks error response: ${response?.errorBody()}")

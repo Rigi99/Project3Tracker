@@ -22,4 +22,15 @@
     <string name="image_url">Image URL</string>
     <string name="submit">Submit</string>
     <string name="update">Update</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="assigned_to_userid">Assigned to (UserID)</string>
+    <string name="department_id">Department ID:</string>
+    <string name="created_time">Created on:</string>
+    <string name="created_by">Created by:</string>
+    <string name="deadline">Deadline:</string>
+    <string name="assigned_to">Assigned to:</string>
+    <string name="status">Status:</string>
+    <string name="details">Details</string>
+    <string name="ok">OK</string>
 </resources>

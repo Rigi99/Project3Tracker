@@ -8,29 +8,30 @@ import com.example.project3tracker.App
 import com.example.project3tracker.api.BackendConstants
 import com.example.project3tracker.api.ThreeTrackerRepository
 import com.example.project3tracker.api.model.CreateTaskRequestBody
-import com.example.project3tracker.api.model.LoginRequestBody
 import com.example.project3tracker.manager.SharedPreferencesManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.sql.Time
 
 class NewTaskViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
     companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
         private val TAG: String = javaClass.simpleName
     }
 
     var isSuccessful: MutableLiveData<Boolean> = MutableLiveData()
 
     fun createTask(
+        title: String,
         description: String,
         assignedToUserId: Int,
         priority: Int,
-        deadline: Time,
+        deadline: Long,
         departmentId: Int,
         status: Int
     ) {
         val requestBody = CreateTaskRequestBody(
+            title,
             description,
             assignedToUserId,
             priority,
@@ -38,18 +39,24 @@ class NewTaskViewModel(private val repository: ThreeTrackerRepository) : ViewMod
             departmentId,
             status
         )
-        val token = BackendConstants.HEADER_TOKEN
+        val token: String? = App.sharedPreferences.getStringValue(
+            SharedPreferencesManager.KEY_TOKEN,
+            "Empty token!"
+        )
         viewModelScope.launch {
-            executeCreateTask(token, requestBody)
+            if (token != null) {
+                executeCreateTask(token, requestBody)
+            }
         }
     }
 
     private suspend fun executeCreateTask(token: String, requestBody: CreateTaskRequestBody) {
         try {
+            Log.d("XXX", token)
             val response = withContext(Dispatchers.IO) {
                 repository.createTask(token, requestBody)
             }
-
+            Log.d("XXX", response.toString())
             if (response.isSuccessful) {
                 Log.d(TAG, "Creating task response: ${response.body()}")
 
@@ -58,7 +65,7 @@ class NewTaskViewModel(private val repository: ThreeTrackerRepository) : ViewMod
                     isSuccessful.value = true
                 }
             } else {
-                Log.d(TAG, "Login error response: ${response.message()}")
+                Log.d("XXX", "Add task error response: ${response.errorBody().toString()}")
                 isSuccessful.value = false
             }
         } catch (e: Exception) {

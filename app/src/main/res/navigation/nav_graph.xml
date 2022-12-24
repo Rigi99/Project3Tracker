@@ -24,4 +24,8 @@
         android:id="@+id/newTaskFragment"
         android:name="com.example.project3tracker.fragment.NewTaskFragment"
         android:label="NewTaskFragment" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.project3tracker.fragment.DetailsFragment"
+        android:label="DetailsFragment" />
 </navigation>

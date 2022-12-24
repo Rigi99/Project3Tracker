@@ -15,6 +15,7 @@ import kotlinx.coroutines.withContext
 
 class SettingsViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
     companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
         private val TAG: String = javaClass.simpleName
     }
 

@@ -1,17 +1,18 @@
 package com.example.project3tracker.api.model
 
 import com.google.gson.annotations.SerializedName
-import java.sql.Time
 
 data class CreateTaskRequestBody(
+    @SerializedName("title")
+    var title: String,
     @SerializedName("description")
-    var descrition: String,
+    var description: String,
     @SerializedName("assignedToUserId")
     var assignedToUserId: Int,
     @SerializedName("priority")
     var priority: Int,
     @SerializedName("deadline")
-    var deadline: Time,
+    var deadline: Long,
     @SerializedName("departmentId")
     var departmentId: Int,
     @SerializedName("status")

@@ -7,7 +7,7 @@ data class CreateTaskResponse(
     var message: String
 ) {
     override fun toString(): String {
-        return "LoginResponse(" +
-                "userId='$message"
+        return "CreateTaskResponse()" +
+                "message = '$message"
     }
 }

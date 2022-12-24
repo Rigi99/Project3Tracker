@@ -7,7 +7,7 @@ data class UpdateProfileResponse(
     var message: String
 ) {
     override fun toString(): String {
-        return "UpdateUserResponse(" +
-                "userId='$message"
+        return "UpdateUserResponse()" +
+                "message = '$message"
     }
 }

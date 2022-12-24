@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class GetProfileViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
     companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
         private val TAG: String = javaClass.simpleName
     }
 

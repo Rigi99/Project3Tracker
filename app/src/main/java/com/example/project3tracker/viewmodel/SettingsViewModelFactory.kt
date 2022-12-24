@@ -8,6 +8,7 @@ class SettingsViewModelFactory(private val repository: ThreeTrackerRepository) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        @Suppress("UNCHECKED_CAST")
         return SettingsViewModel(repository) as T
     }
 }

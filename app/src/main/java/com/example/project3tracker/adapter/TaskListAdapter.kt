@@ -40,6 +40,7 @@ class TasksListAdapter(
         }
     }
 
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     inner class DataViewHolder(itemView: View) : SimpleDataViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
         val taskTitleTextView: TextView = itemView.findViewById(R.id.task_title_view)
@@ -56,7 +57,6 @@ class TasksListAdapter(
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
             listener.onItemClick(currentPosition)
-
         }
 
         override fun onLongClick(p0: View?): Boolean {
@@ -116,7 +116,7 @@ class TasksListAdapter(
             }
 
             Glide.with(context)
-                .load(R.drawable.ic_launcher_background)
+                .load(R.drawable.ic_baseline_house_24)
                 .override(100, 100)
                 .into(complexHolder.taskOwnerProfileImage)
         }

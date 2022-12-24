@@ -28,6 +28,7 @@ import java.util.concurrent.Executors
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     companion object {
+        @Suppress("JAVA_CLASS_ON_COMPANION")
         private val TAG: String = javaClass.simpleName
     }
 
