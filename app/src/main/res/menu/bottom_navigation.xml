@@ -12,6 +12,11 @@
         android:title="@string/add_task" />
 
     <item
+        android:id="@+id/departments"
+        android:icon="@drawable/ic_baseline_people_alt_24"
+        android:title="@string/departments" />
+
+    <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/settings" />

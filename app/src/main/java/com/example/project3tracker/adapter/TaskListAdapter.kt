@@ -1,5 +1,6 @@
 package com.example.project3tracker.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -89,18 +90,24 @@ class TasksListAdapter(
         val currentItem = list[position]
 
         return if (currentItem.status == 0) {
-            TaskListItemType.SIMPLE.value
+            TaskListItemType.COMPLEX.value
         } else {
             TaskListItemType.COMPLEX.value
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SimpleDataViewHolder, position: Int) {
         if (getItemViewType(position) == TaskListItemType.COMPLEX.value) {
             val complexHolder = (holder as DataViewHolder)
             val currentItem = list[position]
+            if(currentItem.status == 0){
+                complexHolder.taskTitleTextView.text = currentItem.title+"\n(DONE)"
+            }
+            else{
+                complexHolder.taskTitleTextView.text = currentItem.title
+            }
 
-            complexHolder.taskTitleTextView.text = currentItem.title
             complexHolder.taskDescriptionTextView.text = currentItem.description
 
             when (currentItem.priority) {

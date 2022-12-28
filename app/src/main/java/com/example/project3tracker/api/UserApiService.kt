@@ -30,4 +30,10 @@ interface UserApiService {
     @GET(BackendConstants.GET_USER)
     suspend fun getUserData(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<GetProfileResponse>
 
+    @GET(BackendConstants.GET_DEPARTMENTS)
+    suspend fun getDepartments(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<GetDepartmentsResponse>>
+
+    @GET(BackendConstants.GET_USERS)
+    suspend fun getUsers(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<GetProfileResponse>>
+
 }

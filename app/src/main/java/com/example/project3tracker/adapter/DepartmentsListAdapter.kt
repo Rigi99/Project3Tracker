@@ -1,0 +1,51 @@
+package com.example.project3tracker.adapter
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.project3tracker.R
+import com.example.project3tracker.api.model.GetDepartmentsResponse
+
+class DepartmentsListAdapter(
+    private var list: ArrayList<GetDepartmentsResponse>
+) :
+    RecyclerView.Adapter<DepartmentsListAdapter.SimpleDataViewHolder>() {
+
+    inner class SimpleDataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val departmentsTitleView: TextView = itemView.findViewById(R.id.department_name_view)
+        val departmentMembers: TextView = itemView.findViewById(R.id.department_members_view)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleDataViewHolder {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.departments_item, parent, false)
+
+        return SimpleDataViewHolder(itemView)
+    }
+
+    override fun getItemCount() = list.size
+
+    fun setData(newList: ArrayList<GetDepartmentsResponse>) {
+        list = newList
+    }
+
+    override fun onBindViewHolder(
+        holder: SimpleDataViewHolder,
+        position: Int
+    ) {
+        val currentItem = list[position]
+        holder.departmentsTitleView.text = currentItem.name
+        val users = currentItem.listOfUsers
+        val strBuilder = StringBuilder()
+        users?.forEach {
+            val a = it.firstName
+            val b = it.lastName
+            val aux = a.plus(" ").plus(b)
+            strBuilder.appendLine(aux)
+        }
+        holder.departmentMembers.text = strBuilder
+    }
+
+}

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.tasks -> findNavController(R.id.nav_host_fragment).navigate(R.id.taskListFragment)
                 R.id.settings -> findNavController(R.id.nav_host_fragment).navigate(R.id.profileFragment)
                 R.id.newTask -> findNavController(R.id.nav_host_fragment).navigate(R.id.newTaskFragment)
+                R.id.departments -> findNavController(R.id.nav_host_fragment).navigate(R.id.departmentsFragment)
                 else -> {}
             }
             true

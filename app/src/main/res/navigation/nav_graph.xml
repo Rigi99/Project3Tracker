@@ -28,4 +28,8 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.project3tracker.fragment.DetailsFragment"
         android:label="DetailsFragment" />
+    <fragment
+        android:id="@+id/departmentsFragment"
+        android:name="com.example.project3tracker.fragment.DepartmentsFragment"
+        android:label="DepartmentsFragment" />
 </navigation>

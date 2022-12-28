@@ -6,7 +6,7 @@
     <string name="this_is_a_simple_item">This is a simple item!</string>
     <string name="task_title">Task title</string>
     <string name="task_description">Task description</string>
-    <string name="task_priority">Task priority</string>
+    <string name="task_priority">Task priority:</string>
     <string name="owner_s_profile_picture">Owner\'s profile picture</string>
     <string name="todo">TODO</string>
     <string name="register">Register</string>
@@ -33,4 +33,7 @@
     <string name="status">Status:</string>
     <string name="details">Details</string>
     <string name="ok">OK</string>
+    <string name="department">Department</string>
+    <string name="departments">Departments</string>
+    <string name="department_members">Department members</string>
 </resources>
