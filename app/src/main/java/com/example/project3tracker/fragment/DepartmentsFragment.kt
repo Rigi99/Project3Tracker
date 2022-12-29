@@ -8,18 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project3tracker.R
 import com.example.project3tracker.adapter.DepartmentsListAdapter
 import com.example.project3tracker.api.ThreeTrackerRepository
+import com.example.project3tracker.api.model.Department
 import com.example.project3tracker.api.model.GetDepartmentsResponse
 import com.example.project3tracker.viewmodel.GetDepartmentsViewModel
 import com.example.project3tracker.viewmodel.GetDepartmentsViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class DepartmentsFragment : Fragment(R.layout.fragment_task_list) {
+class DepartmentsFragment : Fragment(R.layout.fragment_task_list),
+    DepartmentsListAdapter.OnItemClickListener {
 
     companion object {
         @Suppress("JAVA_CLASS_ON_COMPANION")
@@ -38,7 +41,8 @@ class DepartmentsFragment : Fragment(R.layout.fragment_task_list) {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_departments, container, false)
         val factory = GetDepartmentsViewModelFactory(ThreeTrackerRepository())
-        getDepartmentsViewModel = ViewModelProvider(requireActivity(), factory)[GetDepartmentsViewModel::class.java]
+        getDepartmentsViewModel =
+            ViewModelProvider(requireActivity(), factory)[GetDepartmentsViewModel::class.java]
         recyclerView = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
         getDepartmentsViewModel.departments.observe(viewLifecycleOwner) {
@@ -50,7 +54,7 @@ class DepartmentsFragment : Fragment(R.layout.fragment_task_list) {
     }
 
     private fun setupRecyclerView() {
-        adapter = DepartmentsListAdapter(ArrayList())
+        adapter = DepartmentsListAdapter(ArrayList(), this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.addItemDecoration(
@@ -69,5 +73,19 @@ class DepartmentsFragment : Fragment(R.layout.fragment_task_list) {
             requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
 
         bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    override fun onItemClick(position: Int) {
+        val current = getDepartmentsViewModel.departments.value?.get(position)
+        if (current != null) {
+            val users = current.listOfUsers ?: emptyList()
+            getDepartmentsViewModel.selectedDepartment =
+                Department(
+                    current.id,
+                    current.name,
+                    users
+                )
+            findNavController().navigate(R.id.departmentDetailsFragment)
+        }
     }
 }

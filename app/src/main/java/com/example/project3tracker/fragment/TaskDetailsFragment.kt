@@ -19,11 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailsFragment : Fragment(R.layout.fragment_detail) {
-//    companion object {
-//        @Suppress("JAVA_CLASS_ON_COMPANION")
-//        private val TAG: String = javaClass.simpleName
-//    }
+class TaskDetailsFragment : Fragment(R.layout.fragment_task_details) {
 
     private lateinit var taskViewModel: TaskViewModel
     private lateinit var titleTextView: TextView
@@ -49,7 +45,7 @@ class DetailsFragment : Fragment(R.layout.fragment_detail) {
                 requireActivity(),
                 taskViewModelFactory
             )[TaskViewModel::class.java]
-        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_task_details, container, false)
         titleTextView = view.findViewById(R.id.textViewTitle)
         descriptionTextView = view.findViewById(R.id.textViewDescription)
         createdOnTextView = view.findViewById(R.id.textViewCreatedOn)

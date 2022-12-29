@@ -11,13 +11,22 @@ class SharedPreferencesManager(context: Context) {
 
     companion object {
         const val KEY_TOKEN = "SHARED_PREFERENCES_KEY_TOKEN"
+        const val KEY_TOKEN_DEADLINE = "SHARED_PREFERENCES_KEY_TOKEN_DEADLINE"
     }
 
     fun putStringValue(key: String, value: String) {
         preferences.edit().putString(key, value).apply()
     }
 
+    fun putLongValue(key: String, value: Long) {
+        preferences.edit().putLong(key, value).apply()
+    }
+
     fun getStringValue(key: String, defaultValue: String): String? {
         return preferences.getString(key, defaultValue)
+    }
+
+    fun getLongValue(key: String, defaultValue: Long): Long {
+        return preferences.getLong(key, defaultValue)
     }
 }

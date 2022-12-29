@@ -1,5 +1,6 @@
 package com.example.project3tracker.fragment
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -15,8 +16,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.project3tracker.App
 import com.example.project3tracker.R
 import com.example.project3tracker.api.ThreeTrackerRepository
+import com.example.project3tracker.manager.SharedPreferencesManager
 import com.example.project3tracker.viewmodel.GetProfileViewModel
 import com.example.project3tracker.viewmodel.GetProfileViewModelFactory
 import com.example.project3tracker.viewmodel.SettingsViewModel
@@ -41,6 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var imageURL: EditText
     private lateinit var imageView: ImageView
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -107,6 +112,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
             }
         }
+
+        val logOutButton: Button = view.findViewById(R.id.logOutButton)
+
+        logOutButton.setOnClickListener {
+            App.sharedPreferences.putLongValue(SharedPreferencesManager.KEY_TOKEN_DEADLINE, System.currentTimeMillis())
+            App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_TOKEN, "")
+            findNavController().navigate(R.id.loginFragment)
+        }
+
         return view
     }
 

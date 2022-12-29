@@ -26,10 +26,14 @@
         android:label="NewTaskFragment" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.project3tracker.fragment.DetailsFragment"
+        android:name="com.example.project3tracker.fragment.TaskDetailsFragment"
         android:label="DetailsFragment" />
     <fragment
         android:id="@+id/departmentsFragment"
         android:name="com.example.project3tracker.fragment.DepartmentsFragment"
         android:label="DepartmentsFragment" />
+    <fragment
+        android:id="@+id/departmentDetailsFragment"
+        android:name="com.example.project3tracker.fragment.DepartmentDetailsFragment"
+        android:label="DepartmentDetailsFragment" />
 </navigation>

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -32,6 +33,11 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val factory = LoginViewModelFactory(ThreeTrackerRepository())
         loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        })
     }
 
     override fun onCreateView(
@@ -75,7 +81,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
+        val bottomNavigationView =
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
         bottomNavigationView.visibility = View.GONE
     }
 }

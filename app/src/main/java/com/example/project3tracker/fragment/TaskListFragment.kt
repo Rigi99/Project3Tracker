@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.project3tracker.R
 import com.example.project3tracker.adapter.TasksListAdapter
 import com.example.project3tracker.api.ThreeTrackerRepository
+import com.example.project3tracker.api.model.GetProfileResponse
 import com.example.project3tracker.api.model.Task
 import com.example.project3tracker.api.model.TaskResponse
 import com.example.project3tracker.viewmodel.TaskViewModel
@@ -49,6 +50,9 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list),
             Log.d(TAG, "Tasks list = $it")
             adapter.setData(tasksViewModel.tasks.value as ArrayList<TaskResponse>)
             adapter.notifyDataSetChanged()
+        }
+        tasksViewModel.userData.observe(viewLifecycleOwner) {
+            adapter.setUser(tasksViewModel.userData.value as GetProfileResponse)
         }
         return view
     }
@@ -86,7 +90,7 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list),
     }
 
     override fun onItemLongClick(position: Int) {
-//        TODO("Not yet implemented")
+        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -96,5 +100,10 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list),
             requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_bar)
 
         bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        tasksViewModel.getData()
     }
 }

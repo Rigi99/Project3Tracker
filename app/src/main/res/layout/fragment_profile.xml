@@ -122,16 +122,30 @@
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
         android:background="@color/colorWhite"
         android:gravity="center"
         android:text="@string/update"
         android:textColor="#3F51B5"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextImageURL"
         app:layout_constraintVertical_bias="0.129" />
+
+    <Button
+        android:id="@+id/logOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:text="@string/log_out"
+        android:textColor="#3F51B5"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextImageURL"
+        app:layout_constraintVertical_bias="0.128" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

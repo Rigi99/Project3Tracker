@@ -20,6 +20,7 @@ class GetDepartmentsViewModel(private val repository: ThreeTrackerRepository) : 
 
     var departments: MutableLiveData<List<GetDepartmentsResponse>> = MutableLiveData()
     private var users: MutableLiveData<List<GetProfileResponse>> = MutableLiveData()
+    lateinit var selectedDepartment: Department
 
     init {
         getUsers()

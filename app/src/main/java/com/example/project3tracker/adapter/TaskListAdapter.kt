@@ -11,15 +11,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.project3tracker.R
+import com.example.project3tracker.api.model.GetProfileResponse
 import com.example.project3tracker.api.model.TaskResponse
 
 class TasksListAdapter(
     private var list: ArrayList<TaskResponse>,
     private val context: Context,
     private val listener: OnItemClickListener,
-    private val listener2: OnItemLongClickListener
+    private val listener2: OnItemLongClickListener,
 ) :
     RecyclerView.Adapter<TasksListAdapter.SimpleDataViewHolder>() {
+
+    private var user: GetProfileResponse ?= null
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -123,7 +126,8 @@ class TasksListAdapter(
             }
 
             Glide.with(context)
-                .load(R.drawable.ic_baseline_house_24)
+                .load(user?.image)
+                .error(R.drawable.ic_baseline_house_24)
                 .override(100, 100)
                 .into(complexHolder.taskOwnerProfileImage)
         }
@@ -133,6 +137,10 @@ class TasksListAdapter(
 
     fun setData(newList: ArrayList<TaskResponse>) {
         list = newList
+    }
+
+    fun setUser(user: GetProfileResponse){
+        this.user = user
     }
 
     private enum class TaskListItemType(val value: Int) {

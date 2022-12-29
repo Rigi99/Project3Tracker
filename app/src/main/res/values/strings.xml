@@ -36,4 +36,5 @@
     <string name="department">Department</string>
     <string name="departments">Departments</string>
     <string name="department_members">Department members</string>
+    <string name="log_out">log Out</string>
 </resources>

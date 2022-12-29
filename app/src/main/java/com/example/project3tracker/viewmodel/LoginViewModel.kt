@@ -19,7 +19,6 @@ class LoginViewModel(private val repository: ThreeTrackerRepository) : ViewModel
         private val TAG: String = javaClass.simpleName
     }
 
-    var token: MutableLiveData<String> = MutableLiveData()
     var isSuccessful: MutableLiveData<Boolean> = MutableLiveData()
 
     fun login(username: String, password: String) {
@@ -38,10 +37,10 @@ class LoginViewModel(private val repository: ThreeTrackerRepository) : ViewModel
             if (response.isSuccessful) {
                 Log.d(TAG, "Login response: ${response.body()}")
 
-                val responseToken = response.body()?.token
+                val responseToken = response.body()
                 responseToken?.let {
-                    token.value = it
-                    App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_TOKEN, it)
+                    App.sharedPreferences.putStringValue(SharedPreferencesManager.KEY_TOKEN, it.token)
+                    App.sharedPreferences.putLongValue(SharedPreferencesManager.KEY_TOKEN_DEADLINE, it.deadline)
                     isSuccessful.value = true
                 }
             } else {

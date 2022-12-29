@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.example.project3tracker.databinding.ActivityMainBinding
+import com.example.project3tracker.manager.SharedPreferencesManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,5 +41,18 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         Log.d(TAG, "onStop() called!")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (App.sharedPreferences.getStringValue(SharedPreferencesManager.KEY_TOKEN, "") != "") {
+            if (App.sharedPreferences.getLongValue(
+                    SharedPreferencesManager.KEY_TOKEN_DEADLINE,
+                    System.currentTimeMillis()
+                ) != System.currentTimeMillis()
+            ) {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.taskListFragment)
+            }
+        }
     }
 }
